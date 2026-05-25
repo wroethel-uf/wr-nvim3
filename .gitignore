@@ -1,0 +1,10 @@
+# Claude Code project instructions
+CLAUDE.md
+
+# Claude Code task tracking
+tasks/
+
+# Vim undo/swap files
+*.un~
+*.swp
+*.swo
