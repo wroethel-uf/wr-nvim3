@@ -56,6 +56,8 @@ Open `nvim` — lazy.nvim will bootstrap itself and install all plugins on first
 
 In an oil buffer, edit like any text file — rename lines, `dd` to delete, `:w` to apply changes to disk.
 
+Oil directory buffers are unlisted (`buflisted = false`) — they won't appear in `:buffers`, `:ls`, or `:b <Tab>` completion.
+
 ### LSP (active when a language server is attached)
 
 | Key | Action |

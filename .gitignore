@@ -1,8 +1,9 @@
 # Claude Code project instructions
 CLAUDE.md
 
-# Claude Code task tracking
-tasks/
+# Claude Code task tracking (ephemeral); lessons.md is tracked
+tasks/*
+!tasks/lessons.md
 
 # tmp files for testing
 tmp/
