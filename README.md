@@ -77,9 +77,11 @@ In an oil buffer, edit like any text file — rename lines, `dd` to delete, `:w`
 |---|---|
 | `<C-Space>` | Trigger completion |
 | `<C-n>` / `<C-p>` | Next / previous item |
-| `<Tab>` / `<S-Tab>` | Next / previous item, or jump snippet placeholder |
-| `<CR>` | Confirm selection |
+| `<Tab>` | Confirm selection (or expand/jump snippet placeholder) |
+| `<S-Tab>` | Previous item, or jump back in snippet |
+| `<CR>` | Plain newline (dismisses popup without confirming) |
 | `<C-e>` | Abort |
+| `<leader>tc` | Toggle completion on / off |
 
 ### General
 

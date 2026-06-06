@@ -20,4 +20,10 @@ map("n", "<C-u>", "<C-u>zz")
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
+-- Toggle completion on/off
+map("n", "<leader>tc", function()
+  vim.g.cmp_enabled = vim.g.cmp_enabled == false
+  vim.notify("Completion " .. (vim.g.cmp_enabled == false and "disabled" or "enabled"))
+end, { desc = "Toggle completion" })
+
 -- LSP keymaps are set in plugins/lsp.lua on LspAttach

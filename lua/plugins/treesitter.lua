@@ -12,6 +12,12 @@ return {
         highlight = { enable = true },
         indent = { enable = true },
       })
+      -- Neovim 0.12 bundles its own markdown parser and activates treesitter
+      -- highlighting independently of nvim-treesitter. Stop it explicitly.
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "markdown" },
+        callback = function() vim.treesitter.stop() end,
+      })
     end,
   },
 }
