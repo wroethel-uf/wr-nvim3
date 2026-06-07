@@ -13,6 +13,9 @@ return {
       local luasnip = require("luasnip")
 
       cmp.setup({
+        enabled = function()
+          return vim.g.cmp_enabled ~= false
+        end,
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -25,11 +28,14 @@ return {
           ["<C-u>"]     = cmp.mapping.scroll_docs(-4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"]     = cmp.mapping.abort(),
-          ["<CR>"]      = cmp.mapping.confirm({ select = true }),
-          -- Tab: cycle completions or jump through snippet placeholders
+          -- CR is a plain newline; Tab confirms or jumps snippets
+          ["<CR>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then cmp.abort() end
+            fallback()
+          end),
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-              cmp.select_next_item()
+              cmp.confirm({ select = true })
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
             else

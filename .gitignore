@@ -4,6 +4,9 @@ CLAUDE.md
 # Claude Code task tracking
 tasks/
 
+# tmp files for testing
+tmp/
+
 # Vim undo/swap files
 *.un~
 *.swp

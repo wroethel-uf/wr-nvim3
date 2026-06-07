@@ -25,6 +25,8 @@ Open `nvim` — lazy.nvim will bootstrap itself and install all plugins on first
 | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | LSP client configuration |
 | [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) | Completion engine |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip) | Snippet engine |
+| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder (files, grep, buffers) |
+| [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) | Lua utility library (telescope dependency) |
 | [oil.nvim](https://github.com/stevearc/oil.nvim) | File navigation (directory-as-buffer) |
 | [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim) | Colorscheme (hard contrast) |
 | [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim) | Colorscheme (wave variant, inactive) |
@@ -46,6 +48,17 @@ Open `nvim` — lazy.nvim will bootstrap itself and install all plugins on first
 
 `<leader>` is `Space`.
 
+### Fuzzy Finding (telescope.nvim)
+
+Requires `ripgrep` for live grep (`brew install ripgrep`).
+
+| Key | Action |
+|---|---|
+| `<leader>ff` | Find files |
+| `<leader>fg` | Live grep across project |
+| `<leader>fb` | Fuzzy-switch open buffers |
+| `<leader>fh` | Search help tags |
+
 ### File Navigation (oil.nvim)
 
 | Key | Action |
@@ -55,6 +68,8 @@ Open `nvim` — lazy.nvim will bootstrap itself and install all plugins on first
 | `<Enter>` | Open file or directory |
 
 In an oil buffer, edit like any text file — rename lines, `dd` to delete, `:w` to apply changes to disk.
+
+Oil directory buffers are unlisted (`buflisted = false`) — they won't appear in `:buffers`, `:ls`, or `:b <Tab>` completion.
 
 ### LSP (active when a language server is attached)
 
@@ -77,9 +92,11 @@ In an oil buffer, edit like any text file — rename lines, `dd` to delete, `:w`
 |---|---|
 | `<C-Space>` | Trigger completion |
 | `<C-n>` / `<C-p>` | Next / previous item |
-| `<Tab>` / `<S-Tab>` | Next / previous item, or jump snippet placeholder |
-| `<CR>` | Confirm selection |
+| `<Tab>` | Confirm selection (or expand/jump snippet placeholder) |
+| `<S-Tab>` | Previous item, or jump back in snippet |
+| `<CR>` | Plain newline (dismisses popup without confirming) |
 | `<C-e>` | Abort |
+| `<leader>tc` | Toggle completion on / off |
 
 ### General
 
