@@ -55,6 +55,8 @@ Requires `ripgrep` for live grep (`brew install ripgrep`).
 | Key | Action |
 |---|---|
 | `<leader>ff` | Find files |
+| `<leader>fi` | Find files (including gitignored) |
+| `<leader>fa` | Find all files (including hidden and gitignored) |
 | `<leader>fg` | Live grep across project |
 | `<leader>fb` | Fuzzy-switch open buffers |
 | `<leader>fh` | Search help tags |
@@ -117,12 +119,43 @@ vim.cmd("colorscheme gruvbox")       -- active
 -- vim.cmd("colorscheme everforest")
 ```
 
+## Plugin Version Strategy
+
+`lazy-lock.json` is a lockfile that records the exact git commit hash of every installed plugin. This config commits it, so you have two options for how to handle plugin versions across machines.
+
+### Option A: Follow the lockfile (recommended for consistency)
+
+Use this if you want all your machines running the same plugin versions as what's committed in the repo.
+
+```
+git pull                   # get latest config changes, including any lockfile updates
+:Lazy restore              # install plugins at the exact commits in lazy-lock.json
+```
+
+Never run `:Lazy update` in this workflow — that would pull newer commits and diverge from the lockfile. If you want to update plugins, do it on one primary machine:
+
+```
+:Lazy update               # pull latest commits for all plugins
+# quit nvim, commit and push lazy-lock.json
+git add lazy-lock.json
+git commit -m "Update plugin lockfile"
+git push
+```
+
+Then on other machines, `git pull` and `:Lazy restore` to sync.
+
+### Option B: Each machine updates independently
+
+Run `:Lazy update` freely on any machine. Plugin versions will drift across machines over time. The lockfile still provides a rollback point — if a plugin breaks something, check `git log lazy-lock.json` to find a previous known-good state and restore it.
+
 ## Maintenance
 
 | Command | Action |
 |---|---|
 | `:Lazy` | Open plugin manager UI |
-| `:Lazy update` | Update all plugins |
+| `:Lazy update` | Update all plugins to latest |
+| `:Lazy restore` | Pin plugins to versions in `lazy-lock.json` |
+| `:Lazy sync` | Install missing plugins and update all to latest |
 | `:Mason` | Open tool installer UI |
 | `:TSUpdate` | Update all treesitter parsers |
 | `:checkhealth` | Run health checks |
