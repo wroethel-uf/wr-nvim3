@@ -68,3 +68,7 @@ Works from anywhere inside the quoted/bracketed region.
 * Dismiss popup (plain newline): `<CR>`
 * Abort: `<C-e>`
 * Toggle completion on/off: `<leader>tc`
+
+## Emoji
+* Type `:smile` (or any emoji name) in insert mode to get completions via cmp-emoji
+* Confirm with `<Tab>` as usual
