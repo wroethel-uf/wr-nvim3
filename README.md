@@ -105,6 +105,7 @@ Oil directory buffers are unlisted (`buflisted = false`) — they won't appear i
 | Key | Action |
 |---|---|
 | `<Esc>` | Clear search highlight |
+| `jj` / `jk` (insert) | Escape insert mode |
 | `[b` / `]b` | Previous / next buffer |
 | `J` / `K` (visual) | Move selection down / up |
 | `<C-d>` / `<C-u>` | Scroll half-page, cursor centered |

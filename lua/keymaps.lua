@@ -6,6 +6,10 @@ local map = vim.keymap.set
 -- Clear search highlight with Escape
 map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
+-- Quick escape from insert mode
+map("i", "jj", "<Esc>", { desc = "Escape insert mode" })
+map("i", "jk", "<Esc>", { desc = "Escape insert mode" })
+
 -- Buffer navigation
 map("n", "[b", "<cmd>bprev<CR>", { desc = "Previous buffer" })
 map("n", "]b", "<cmd>bnext<CR>", { desc = "Next buffer" })
