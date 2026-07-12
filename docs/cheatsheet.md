@@ -60,6 +60,7 @@ Works from anywhere inside the quoted/bracketed region.
 * Search across file contents: `<leader>fg`
 * Switch between open buffers: `<leader>fb`
 * Search help tags: `<leader>fh`
+* Select Python venv (repoints pyright live): `<leader>fv`
 
 ## Completion (nvim-cmp)
 * Trigger completion: `<C-Space>`
@@ -68,6 +69,15 @@ Works from anywhere inside the quoted/bracketed region.
 * Dismiss popup (plain newline): `<CR>`
 * Abort: `<C-e>`
 * Toggle completion on/off: `<leader>tc`
+
+## Python venvs (pyright)
+* Point pyright at a project's venv without relying on shell activation — add to `pyproject.toml`:
+  ```toml
+  [tool.pyright]
+  venvPath = "."
+  venv = ".venv"
+  ```
+* To switch envs on the fly instead: `<leader>fv` opens a picker and repoints the running pyright client immediately, no restart needed.
 
 ## Emoji
 * Type `:smile` (or any emoji name) in insert mode to get completions via cmp-emoji

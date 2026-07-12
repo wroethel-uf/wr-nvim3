@@ -27,6 +27,7 @@ Open `nvim` — lazy.nvim will bootstrap itself and install all plugins on first
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip) | Snippet engine |
 | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder (files, grep, buffers) |
 | [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) | Lua utility library (telescope dependency) |
+| [venv-selector.nvim](https://github.com/linux-cultist/venv-selector.nvim) | Picker to select a Python virtualenv and repoint pyright at it |
 | [oil.nvim](https://github.com/stevearc/oil.nvim) | File navigation (directory-as-buffer) |
 | [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim) | Colorscheme (hard contrast) |
 | [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim) | Colorscheme (wave variant, inactive) |
@@ -44,6 +45,22 @@ Open `nvim` — lazy.nvim will bootstrap itself and install all plugins on first
 | bashls | Bash |
 | ts_ls | JavaScript / TypeScript |
 
+## Python Development
+
+`pyright` doesn't run through `uv run` — it's a separate static-analysis process and needs to be told which environment's packages to resolve against. Without config, it falls back to whatever `python3` resolves to on `PATH` at the moment Neovim was launched, which silently breaks if you forget to activate a venv first.
+
+To make this deterministic and project-local, add to the project's `pyproject.toml`:
+
+```toml
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+```
+
+`venvPath` is resolved relative to the location of `pyproject.toml`, so this works regardless of shell activation state, `PATH`, or how Neovim was launched — and it's honored by pyright/Pylance everywhere (VS Code, CI, this config), not just here. Adjust `venv` if the folder isn't named `.venv` (e.g. `"venv"`).
+
+For switching environments on the fly without editing files, use `<leader>fv` (venv-selector.nvim) — see [Keybindings](#keybindings) below.
+
 ## Keybindings
 
 `<leader>` is `Space`.
@@ -60,6 +77,7 @@ Requires `ripgrep` for live grep (`brew install ripgrep`).
 | `<leader>fg` | Live grep across project |
 | `<leader>fb` | Fuzzy-switch open buffers |
 | `<leader>fh` | Search help tags |
+| `<leader>fv` | Select Python venv (venv-selector.nvim, loads on `.py` files) |
 
 ### File Navigation (oil.nvim)
 
