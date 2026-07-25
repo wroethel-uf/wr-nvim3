@@ -27,8 +27,15 @@ opt.showmode = false     -- mode shown in statusline already
 
 -- Behavior
 opt.updatetime = 250
-opt.undofile = true      -- persistent undo across sessions
 opt.clipboard = "unnamedplus"
+
+-- No local persistence (PII/confidential files must never be written to disk
+-- outside the file itself): disables ShaDa, persistent undo, swapfiles, backups.
+opt.shada = ""
+opt.undofile = false
+opt.swapfile = false
+opt.backup = false
+opt.writebackup = false
 
 -- Disable unused providers (suppresses checkhealth warnings)
 vim.g.loaded_node_provider = 0
